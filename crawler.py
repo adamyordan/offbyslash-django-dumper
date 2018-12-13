@@ -98,12 +98,12 @@ class Crawler:
     def _crawl_expand(url, initial_files):
         candidate_files = set(initial_files)
         checked_files = set()
-        new_files = set()
 
         while True:
             if checked_files == candidate_files:
                 break
 
+            new_files = set()
             for f in candidate_files:
                 if f in checked_files:
                     continue
