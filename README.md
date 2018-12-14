@@ -1,6 +1,6 @@
 # PoC: Off-by-slash Django Site Dumper
 
-A proof of concept to dump Django website's source code affected by NGINX's off-by-slash misconfiguration.
+> A proof of concept to dump Django website's source code affected by NGINX's off-by-slash misconfiguration.
 
 ![](demo.gif)
 
