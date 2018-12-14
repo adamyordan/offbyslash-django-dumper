@@ -86,7 +86,7 @@ An example website is provided in this repository at directory `vulnerable-site`
 
 ```bash
 $ cd vulnerable-site
-$ docker build -t tmp/vulnsite . && docker run --rm -it -p 8000:80 tmp/vulnsite
+$ docker build -t tmp/vulnsite . && docker run --rm -it -p 8000:80 -d tmp/vulnsite
 
 
 $ cd ..
