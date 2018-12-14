@@ -1,6 +1,6 @@
 # PoC: Off-by-slash Django Site Dumper
 
-> A proof of concept to dump Django website's source code affected by NGINX's off-by-slash misconfiguration.
+> A proof of concept to dump Django website's source code affected by NGINX's off-by-slash alias directive misconfiguration.
 
 <p align="center"><img src="/demo.gif?raw=true"/></p>
 
@@ -64,7 +64,8 @@ $ curl http://django-site.com/static../manage.py
 Affected sites will return a response with status `200 OK` and body containing the source code of `manage.py` file.
 
 
-This local file inclusion is caused by a slight but fatal mistake in Nginx's configuration (_Nginx off-by-slash fail_).
+This local file inclusion is caused by a slight but fatal mistake in Nginx's configuration (_Nginx off-by-slash fail_ / _alias traversal_)
+that allow path traversal via misconfigured alias.
 For example, here is a snippet of affected nginx rule:
 ```
 location /static {
@@ -114,3 +115,4 @@ dump/
 ## Reference
 - [Blackhat USA 2018 presentation slide - by Orange Tsai](https://i.blackhat.com/us-18/Wed-August-8/us-18-Orange-Tsai-Breaking-Parser-Logic-Take-Your-Path-Normalization-Off-And-Pop-0days-Out-2.pdf)
 - [Nginx alias documentation](http://nginx.org/en/docs/http/ngx_http_core_module.html#alias)
+- [Gixy's documentation of path traversal via misconfigured alias](https://github.com/yandex/gixy/blob/master/docs/en/plugins/aliastraversal.md)
