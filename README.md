@@ -55,7 +55,7 @@ dump/
 
 ## Explanation
 
-This dumper works by using a local file inclusion vulnerability caused by a misconfiguration when using NGINX to serve 
+This dumper works by using a path traversal vulnerability caused by a misconfiguration when using NGINX to serve 
 static files. Equivalent curl command used by this dumper to dump local files is:
 ```bash
 $ curl http://django-site.com/static../manage.py
@@ -64,7 +64,7 @@ $ curl http://django-site.com/static../manage.py
 Affected sites will return a response with status `200 OK` and body containing the source code of `manage.py` file.
 
 
-This local file inclusion is caused by a slight but fatal mistake in Nginx's configuration (_Nginx off-by-slash fail_ / _alias traversal_)
+This vulnerability is caused by a slight but fatal mistake in Nginx's configuration (_Nginx off-by-slash fail_ / _alias traversal_)
 that allow path traversal via misconfigured alias.
 For example, here is a snippet of affected nginx rule:
 ```
