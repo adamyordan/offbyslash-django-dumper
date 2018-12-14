@@ -2,7 +2,7 @@
 
 > A proof of concept to dump Django website's source code affected by NGINX's off-by-slash misconfiguration.
 
-![](demo.gif)
+<p align="center"><img src="/demo.gif?raw=true"/></p>
 
 
 ## Installation
